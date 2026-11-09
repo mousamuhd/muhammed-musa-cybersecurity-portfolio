@@ -1,71 +1,83 @@
-# Project 04 – Digital Forensics and File Recovery Practice
+# Project 03 – Web Application Security Testing and Browser Traffic Inspection
 
-**Status:** Practical learning exercises  
-**Tools:** Autopsy, PhotoRec  
-**Environment:** Training files / controlled forensic practice
+**Status:** Practical tool exposure and controlled DVWA exercises  
+**Tools:** Burp Suite, OWASP ZAP, DVWA, browser  
+**Environment:** Controlled training lab
 
 ## 1. Objective
 
-Build foundational skills in digital evidence examination and file recovery, while understanding why forensic handling, integrity and clear reporting matter.
+Practise observing browser-to-application traffic and understand how web application testing tools help identify potential security weaknesses.
 
-## 2. Scope and evidence handling
+## 2. Scope and authorization
 
-Use only sample data, personally owned media or evidence for which you have explicit authorization. Preserve original evidence where possible and work from a verified forensic copy. Do not upload private or confidential evidence to a public repository.
+Testing should only be performed against DVWA or another application that is intentionally provided for training, owned by the learner, or explicitly authorized. Never intercept or inspect another person's traffic or test a live website without permission.
 
-The available project notes confirm practice with Autopsy and PhotoRec, but do not identify a specific disk image, evidence item, file count or recovery outcome. Those details are left blank rather than invented.
+## 3. Activities performed
 
-## 3. Tools
+The learner reports using:
 
-- **Autopsy:** A digital forensics platform used to examine forensic images and review file-system artefacts and metadata.
-- **PhotoRec:** A file recovery utility that can recover files using file-signature-based carving techniques.
+- **Burp Suite** for browser traffic monitoring and inspection during practical exercises.
+- **OWASP ZAP** for browser traffic monitoring and inspection during practical exercises.
+- **DVWA** as a deliberately vulnerable training application.
 
-## 4. Practical workflow
+The DVWA exercises previously practised included navigation through modules for:
 
-1. Identify the source media or sample image and confirm authorization.
-2. Record evidence details, acquisition method and date.
-3. Preserve the original and work from a forensic copy where applicable.
-4. Use Autopsy to create or open a case and examine the supplied image.
-5. Review available file-system artefacts, file metadata and relevant activity.
-6. Use PhotoRec on an approved copy or sample image to practise file carving.
-7. Record recovered items and distinguish recovered data from verified original context.
-8. Document tools, settings, limitations and observations.
+- Brute Force
+- Command Execution
+- CSRF
+- File Inclusion
+- SQL Injection
+- File Upload
+- Cross-Site Scripting (XSS)
 
-## 5. Findings and observations
+The DVWA security setting was changed to **Low** for the learning exercise. This is an intentionally insecure training configuration and must not be used for a real application.
 
-No case-specific findings, hash values, evidence identifiers or recovery counts are present in the available notes. Complete the table only from your actual lab record.
+## 4. Method
 
-| Evidence record | Value |
-|---|---|
-| Case / exercise reference | [Add a non-sensitive reference] |
-| Evidence source | [Add sample image or media type] |
-| Acquisition details | [Add method and date] |
-| Integrity hash | [Add actual hash and algorithm, if calculated] |
-| Autopsy observations | [Add verified artefacts] |
-| PhotoRec recovery result | [Add actual file types/counts] |
-| Limitations | [Add what could not be established] |
+A repeatable lab workflow:
 
-## 6. Forensic good practice
+1. Start the isolated DVWA environment.
+2. Configure the browser to use the local proxy provided by Burp Suite or OWASP ZAP.
+3. Browse the training application and observe HTTP requests and responses.
+4. Identify request parameters, headers, cookies and response behaviour.
+5. Use only the training modules and test cases within the authorized lab.
+6. Record observations and explain potential defensive controls.
 
-- Maintain a record of evidence handling and every action performed.
-- Use cryptographic hashes when appropriate to check integrity.
-- Avoid modifying original evidence.
-- Preserve timestamps and metadata where possible.
-- Explain the limits of file carving: recovered files may lack original names, paths or directory context.
-- Separate direct observations from interpretations and conclusions.
+## 5. Security concepts explored
+
+- SQL injection: unsafe handling of user-supplied input in database queries.
+- Cross-site scripting: untrusted content being interpreted as executable browser script.
+- Command execution: application input potentially reaching operating-system commands.
+- File inclusion: unsafe handling of file paths or include parameters.
+- Brute-force risk: weak authentication controls that permit repeated login attempts.
+- CSRF: unintended actions triggered through an authenticated user's browser.
+
+These are topics explored in the DVWA learning environment; this document does not claim that a production application was tested or compromised.
+
+## 6. Defensive recommendations
+
+- Use parameterized database queries and server-side input validation.
+- Apply context-aware output encoding and appropriate content security controls.
+- Avoid passing untrusted input to operating-system commands.
+- Restrict file access to approved directories and validate file paths.
+- Enforce rate limiting, strong authentication and MFA.
+- Use CSRF tokens and appropriate cookie settings.
+- Keep frameworks and application dependencies updated.
 
 ## 7. Evidence to add
 
-- `evidence/autopsy-case-overview.png`
-- `evidence/autopsy-artifact-view.png`
-- `evidence/photorec-recovery-summary.png`
-- `evidence/evidence-notes.md`
+Add sanitized screenshots that show the local lab and proxy tools, without exposing credentials, session cookies or tokens:
 
-Use synthetic or sanitized examples only. Do not publish personal documents or private data recovered during practice.
+- `evidence/burp-proxy-intercept.png`
+- `evidence/zap-sites-or-history.png`
+- `evidence/dvwa-training-module.png`
+
+Do not publish live session cookies, authorization headers, passwords or personal data.
 
 ## 8. Learning outcome
 
-This practice developed familiarity with forensic examination concepts, file recovery and the need for careful evidence handling and reporting.
+This exercise developed familiarity with intercepting and reviewing browser traffic and understanding common web application vulnerability categories.
 
 ## 9. Limitations
 
-This is a learning project, not a forensic investigation for a client or legal proceeding. No specific evidence recovery success is claimed without supporting records.
+The available notes confirm tool use and DVWA module practice but do not contain a complete request/response evidence set or validated vulnerability report. No production testing is claimed.
