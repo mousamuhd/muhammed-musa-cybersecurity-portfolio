@@ -1,69 +1,77 @@
-# Project 02 – Vulnerability Scanning with Nessus
+# Project 01 – Network Reconnaissance and Service Enumeration with Nmap
 
-**Status:** Practical exposure reported; detailed scan evidence to be added  
-**Tool:** Nessus  
-**Environment:** Training / controlled lab environment
+**Status:** Practical lab exercise completed  
+**Tools:** Kali Linux, Nmap, VirtualBox  
+**Environment:** Controlled VirtualBox lab; target recorded as `192.168.56.102`
 
 ## 1. Objective
 
-Develop familiarity with running vulnerability scans, reviewing scanner output and understanding how scan findings can guide remediation priorities.
+Practise identifying a lab host, discovering exposed network ports and services, and interpreting the results as an initial step in a vulnerability assessment.
 
 ## 2. Scope and authorization
 
-Nessus scanning should be limited to systems owned by the learner or explicitly authorized for assessment. The specific target address, scan policy and date for this exercise have not been retained in the available project notes, so they are intentionally not invented here.
+The scan was performed against a private IP address in a VirtualBox learning environment. This documentation is limited to that controlled lab. Do not scan networks or devices without explicit authorization.
 
-## 3. Activities performed
+## 3. Method
 
-The learner reports carrying out vulnerability scanning using Nessus during cybersecurity internship/practical training.
+The lab workflow involved:
 
-The available notes also show prior work with Nessus plugin updates and plugin-update logs. This demonstrates exposure to the scanner's maintenance and update process, but does not establish a particular vulnerability finding or scan result.
+1. Starting the Kali Linux testing VM and the intended lab target.
+2. Confirming the target's lab IP address.
+3. Running Nmap against `192.168.56.102`.
+4. Reviewing host availability, open ports, service names and version information.
+5. Recording observations for further security review.
 
-## 4. Suggested workflow for documenting a repeatable scan
+Example command pattern for a repeatable lab run (confirm the target IP and authorization before executing):
 
-1. Confirm written authorization and identify the approved target.
-2. Record the target, date, scan policy and scanner/plugin update status.
-3. Select an appropriate scan template for the authorized environment.
-4. Run the scan without disrupting the target.
-5. Review findings by severity and inspect the supporting evidence.
-6. Validate important findings before reporting them.
-7. Recommend remediation and, where authorized, rescan to confirm changes.
+```bash
+nmap -sV -oN nmap-service-enumeration.txt 192.168.56.102
+```
 
-## 5. Findings
+The command above is provided as a reproducible example. It should not be treated as a verbatim record of every command used in the original exercise.
 
-No specific Nessus vulnerability names, severity counts, CVEs, affected hosts or remediation outcomes are included because those details are not available in the current notes. Add them only after checking the original Nessus report.
+## 4. Recorded observations
 
-| Item to record | Value |
-|---|---|
-| Scan date | [Add date] |
-| Authorized target | [Add target or sanitized identifier] |
-| Scan policy | [Add policy] |
-| Critical / High / Medium / Low counts | [Copy from actual report] |
-| Key validated finding | [Add finding and evidence] |
-| Remediation recommendation | [Add recommendation] |
-| Rescan result | [Add if completed] |
+The recorded scan output identified the host as up and reported multiple exposed services. Services noted in the lab included:
 
-## 6. Reporting and remediation principles
+- FTP – `vsftpd 2.3.4`
+- SSH – `OpenSSH 4.7p1`
+- Telnet
+- SMTP – Postfix
+- DNS – ISC BIND 9.4.2
+- HTTP – Apache httpd 2.2.8
+- Samba
+- MySQL
+- PostgreSQL
 
-- Prioritize findings using severity, exploitability, exposure and business impact.
-- Verify scanner findings; automated results can include false positives.
-- Do not claim a vulnerability is exploitable solely because a scanner reported it.
-- Recommend patching, secure configuration, service restriction or compensating controls as appropriate.
-- Record whether remediation was completed and verified.
+The lab notes also include a later scan in which FTP (`vsftpd 2.3.4`) was the service shown. Because the scan conditions and exact command options for that later result were not retained here, it is recorded separately rather than treated as proof that all other services were closed.
+
+## 5. Security significance
+
+Exposed services increase the system's attack surface. Older service versions may require additional investigation, but a version string alone does not prove that a system is exploitable. Each finding should be validated against the actual configuration, patch level and vendor advisories.
+
+## 6. Defensive recommendations
+
+- Disable services that are not required.
+- Restrict administrative services to trusted management networks.
+- Replace insecure protocols such as Telnet with secure alternatives where appropriate.
+- Review service versions and apply supported security updates.
+- Use host firewalls and network segmentation.
+- Repeat scans after remediation and compare the results.
 
 ## 7. Evidence to add
 
-Add sanitized screenshots or exports from an authorized scan:
+The initial exercise was discussed and scan output was recorded, but no original screenshot or complete raw scan file is currently included in this repository. Add sanitized evidence when available:
 
-- `evidence/nessus-scan-overview.png`
-- `evidence/nessus-findings-summary.png`
-- `evidence/nessus-remediation-notes.md`
+- `evidence/nmap-scan-summary.png`
+- `evidence/nmap-service-enumeration.txt`
 
-Remove hostnames, public IPs, credentials, internal business names and other sensitive information before publishing.
+Do not create or label a recreated output as an original screenshot.
 
 ## 8. Learning outcome
 
-This work provided practical exposure to vulnerability scanning with Nessus and the importance of reviewing scan results as part of a structured security assessment.
+This exercise developed familiarity with host discovery, port and service enumeration, reading Nmap output, and explaining why exposed services should be reviewed.
 
 ## 9. Limitations
 
-The available record confirms Nessus scanning practice but does not contain the original report. This project therefore documents the workflow and learning, not unverified scan findings.
+This was a learning exercise, not a full penetration test. No claim is made that every listed service was vulnerable or successfully exploited.
