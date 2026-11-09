@@ -1,0 +1,21 @@
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Private or raw evidence – review before committing
+private/
+raw-evidence/
+*.pcap
+*.pcapng
+*.dump
+*.dd
+*.E01
+*.sqlite
+*.db
+
+# Local notes and secrets
+.env
+*.key
+*.pem
