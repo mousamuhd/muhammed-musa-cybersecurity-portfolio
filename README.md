@@ -1,107 +1,71 @@
-# Project 05 – Password Hash Security Auditing with Hashcat
+# Project 04 – Digital Forensics and File Recovery Practice
 
-**Status:** Controlled lab exercise; sample hashes and wordlist recorded  
-**Tool:** Hashcat  
-**Environment:** Kali Linux, local lab files  
-**Hash mode:** MD5 (`-m 0`)
+**Status:** Practical learning exercises  
+**Tools:** Autopsy, PhotoRec  
+**Environment:** Training files / controlled forensic practice
 
 ## 1. Objective
 
-Understand how password hashes can be tested against candidate passwords in a controlled environment and why weak or reused passwords create security risk.
+Build foundational skills in digital evidence examination and file recovery, while understanding why forensic handling, integrity and clear reporting matter.
 
-## 2. Scope and authorization
+## 2. Scope and evidence handling
 
-This exercise used sample test data created for the lab. Do not use password-cracking tools against accounts, hashes or systems without explicit authorization. Do not publish real password hashes or recovered credentials.
+Use only sample data, personally owned media or evidence for which you have explicit authorization. Preserve original evidence where possible and work from a verified forensic copy. Do not upload private or confidential evidence to a public repository.
 
-## 3. Lab setup recorded
+The available project notes confirm practice with Autopsy and PhotoRec, but do not identify a specific disk image, evidence item, file count or recovery outcome. Those details are left blank rather than invented.
 
-A working directory was created:
+## 3. Tools
 
-```bash
-mkdir -p ~/hash-lab
-cd ~/hash-lab
-```
+- **Autopsy:** A digital forensics platform used to examine forensic images and review file-system artefacts and metadata.
+- **PhotoRec:** A file recovery utility that can recover files using file-signature-based carving techniques.
 
-The sample password file contained:
+## 4. Practical workflow
 
-```text
-password123
-admin123
-welcome123
-```
+1. Identify the source media or sample image and confirm authorization.
+2. Record evidence details, acquisition method and date.
+3. Preserve the original and work from a forensic copy where applicable.
+4. Use Autopsy to create or open a case and examine the supplied image.
+5. Review available file-system artefacts, file metadata and relevant activity.
+6. Use PhotoRec on an approved copy or sample image to practise file carving.
+7. Record recovered items and distinguish recovered data from verified original context.
+8. Document tools, settings, limitations and observations.
 
-The recorded `hashes.txt` entries were:
+## 5. Findings and observations
 
-```text
-482c811da5d5b4bc6d497ffa98491e38
-0192023a7bbd73250516f069df18b500
-5858ea228cc2edf88721699b2c8638e5
-```
+No case-specific findings, hash values, evidence identifiers or recovery counts are present in the available notes. Complete the table only from your actual lab record.
 
-The wordlist contained:
-
-```text
-123456
-qwerty
-password
-admin
-password123
-letmein
-admin123
-welcome123
-```
-
-These are lab sample values, not real user credentials.
-
-## 4. Command used
-
-The recorded Hashcat command was:
-
-```bash
-hashcat -m 0 hashes.txt wordlist.txt
-```
-
-The lab notes show Hashcat v7.1.2 starting and reporting CPU device information.
-
-## 5. Results and interpretation
-
-The available record confirms that Hashcat was launched against the sample MD5 hashes and wordlist. It does **not** preserve the final completion summary or recovered-password output. Therefore, this portfolio does not claim that all hashes—or any specific number of hashes—were successfully cracked.
-
-To complete the result section, rerun the lab or retrieve the original terminal output and record:
-
-| Metric | Actual result |
+| Evidence record | Value |
 |---|---|
-| Hashes tested | [Add count from file] |
-| Hashes recovered | [Add actual Hashcat result] |
-| Runtime | [Add actual runtime] |
-| Hash mode | MD5 (`-m 0`) |
-| Wordlist | Local sample wordlist |
-| Tool version | Hashcat v7.1.2, as shown in recorded startup output |
+| Case / exercise reference | [Add a non-sensitive reference] |
+| Evidence source | [Add sample image or media type] |
+| Acquisition details | [Add method and date] |
+| Integrity hash | [Add actual hash and algorithm, if calculated] |
+| Autopsy observations | [Add verified artefacts] |
+| PhotoRec recovery result | [Add actual file types/counts] |
+| Limitations | [Add what could not be established] |
 
-## 6. Security significance
+## 6. Forensic good practice
 
-MD5 is a fast, legacy hashing algorithm and is not suitable for storing passwords. Password storage should use a purpose-built password-hashing scheme with salts and configurable work factors, such as Argon2id, scrypt, bcrypt or PBKDF2, according to current organizational requirements.
-
-Defensive measures include:
-
-- Use a modern password-hashing algorithm with unique salts.
-- Encourage long, unique passwords and password-manager use.
-- Enable multi-factor authentication.
-- Monitor for credential stuffing and suspicious authentication activity.
-- Apply rate limiting and breached-password screening where appropriate.
+- Maintain a record of evidence handling and every action performed.
+- Use cryptographic hashes when appropriate to check integrity.
+- Avoid modifying original evidence.
+- Preserve timestamps and metadata where possible.
+- Explain the limits of file carving: recovered files may lack original names, paths or directory context.
+- Separate direct observations from interpretations and conclusions.
 
 ## 7. Evidence to add
 
-- `evidence/hashcat-command-and-startup.png`
-- `evidence/hashcat-final-summary.png`
-- `evidence/lab-files-redacted.txt`
+- `evidence/autopsy-case-overview.png`
+- `evidence/autopsy-artifact-view.png`
+- `evidence/photorec-recovery-summary.png`
+- `evidence/evidence-notes.md`
 
-The original notes include the command and startup output, but the final result was not retained. Add the final summary only if it can be verified.
+Use synthetic or sanitized examples only. Do not publish personal documents or private data recovered during practice.
 
 ## 8. Learning outcome
 
-This exercise developed familiarity with MD5 hash-mode selection, wordlist-based auditing and interpreting Hashcat startup output. It also reinforced the risks of weak passwords and fast legacy hashing algorithms.
+This practice developed familiarity with forensic examination concepts, file recovery and the need for careful evidence handling and reporting.
 
 ## 9. Limitations
 
-This was a local educational password-auditing exercise using sample data. It was not an attempt to access real accounts or recover another person's credentials.
+This is a learning project, not a forensic investigation for a client or legal proceeding. No specific evidence recovery success is claimed without supporting records.
