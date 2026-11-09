@@ -1,83 +1,69 @@
-# Project 03 – Web Application Security Testing and Browser Traffic Inspection
+# Project 02 – Vulnerability Scanning with Nessus
 
-**Status:** Practical tool exposure and controlled DVWA exercises  
-**Tools:** Burp Suite, OWASP ZAP, DVWA, browser  
-**Environment:** Controlled training lab
+**Status:** Practical exposure reported; detailed scan evidence to be added  
+**Tool:** Nessus  
+**Environment:** Training / controlled lab environment
 
 ## 1. Objective
 
-Practise observing browser-to-application traffic and understand how web application testing tools help identify potential security weaknesses.
+Develop familiarity with running vulnerability scans, reviewing scanner output and understanding how scan findings can guide remediation priorities.
 
 ## 2. Scope and authorization
 
-Testing should only be performed against DVWA or another application that is intentionally provided for training, owned by the learner, or explicitly authorized. Never intercept or inspect another person's traffic or test a live website without permission.
+Nessus scanning should be limited to systems owned by the learner or explicitly authorized for assessment. The specific target address, scan policy and date for this exercise have not been retained in the available project notes, so they are intentionally not invented here.
 
 ## 3. Activities performed
 
-The learner reports using:
+The learner reports carrying out vulnerability scanning using Nessus during cybersecurity internship/practical training.
 
-- **Burp Suite** for browser traffic monitoring and inspection during practical exercises.
-- **OWASP ZAP** for browser traffic monitoring and inspection during practical exercises.
-- **DVWA** as a deliberately vulnerable training application.
+The available notes also show prior work with Nessus plugin updates and plugin-update logs. This demonstrates exposure to the scanner's maintenance and update process, but does not establish a particular vulnerability finding or scan result.
 
-The DVWA exercises previously practised included navigation through modules for:
+## 4. Suggested workflow for documenting a repeatable scan
 
-- Brute Force
-- Command Execution
-- CSRF
-- File Inclusion
-- SQL Injection
-- File Upload
-- Cross-Site Scripting (XSS)
+1. Confirm written authorization and identify the approved target.
+2. Record the target, date, scan policy and scanner/plugin update status.
+3. Select an appropriate scan template for the authorized environment.
+4. Run the scan without disrupting the target.
+5. Review findings by severity and inspect the supporting evidence.
+6. Validate important findings before reporting them.
+7. Recommend remediation and, where authorized, rescan to confirm changes.
 
-The DVWA security setting was changed to **Low** for the learning exercise. This is an intentionally insecure training configuration and must not be used for a real application.
+## 5. Findings
 
-## 4. Method
+No specific Nessus vulnerability names, severity counts, CVEs, affected hosts or remediation outcomes are included because those details are not available in the current notes. Add them only after checking the original Nessus report.
 
-A repeatable lab workflow:
+| Item to record | Value |
+|---|---|
+| Scan date | [Add date] |
+| Authorized target | [Add target or sanitized identifier] |
+| Scan policy | [Add policy] |
+| Critical / High / Medium / Low counts | [Copy from actual report] |
+| Key validated finding | [Add finding and evidence] |
+| Remediation recommendation | [Add recommendation] |
+| Rescan result | [Add if completed] |
 
-1. Start the isolated DVWA environment.
-2. Configure the browser to use the local proxy provided by Burp Suite or OWASP ZAP.
-3. Browse the training application and observe HTTP requests and responses.
-4. Identify request parameters, headers, cookies and response behaviour.
-5. Use only the training modules and test cases within the authorized lab.
-6. Record observations and explain potential defensive controls.
+## 6. Reporting and remediation principles
 
-## 5. Security concepts explored
-
-- SQL injection: unsafe handling of user-supplied input in database queries.
-- Cross-site scripting: untrusted content being interpreted as executable browser script.
-- Command execution: application input potentially reaching operating-system commands.
-- File inclusion: unsafe handling of file paths or include parameters.
-- Brute-force risk: weak authentication controls that permit repeated login attempts.
-- CSRF: unintended actions triggered through an authenticated user's browser.
-
-These are topics explored in the DVWA learning environment; this document does not claim that a production application was tested or compromised.
-
-## 6. Defensive recommendations
-
-- Use parameterized database queries and server-side input validation.
-- Apply context-aware output encoding and appropriate content security controls.
-- Avoid passing untrusted input to operating-system commands.
-- Restrict file access to approved directories and validate file paths.
-- Enforce rate limiting, strong authentication and MFA.
-- Use CSRF tokens and appropriate cookie settings.
-- Keep frameworks and application dependencies updated.
+- Prioritize findings using severity, exploitability, exposure and business impact.
+- Verify scanner findings; automated results can include false positives.
+- Do not claim a vulnerability is exploitable solely because a scanner reported it.
+- Recommend patching, secure configuration, service restriction or compensating controls as appropriate.
+- Record whether remediation was completed and verified.
 
 ## 7. Evidence to add
 
-Add sanitized screenshots that show the local lab and proxy tools, without exposing credentials, session cookies or tokens:
+Add sanitized screenshots or exports from an authorized scan:
 
-- `evidence/burp-proxy-intercept.png`
-- `evidence/zap-sites-or-history.png`
-- `evidence/dvwa-training-module.png`
+- `evidence/nessus-scan-overview.png`
+- `evidence/nessus-findings-summary.png`
+- `evidence/nessus-remediation-notes.md`
 
-Do not publish live session cookies, authorization headers, passwords or personal data.
+Remove hostnames, public IPs, credentials, internal business names and other sensitive information before publishing.
 
 ## 8. Learning outcome
 
-This exercise developed familiarity with intercepting and reviewing browser traffic and understanding common web application vulnerability categories.
+This work provided practical exposure to vulnerability scanning with Nessus and the importance of reviewing scan results as part of a structured security assessment.
 
 ## 9. Limitations
 
-The available notes confirm tool use and DVWA module practice but do not contain a complete request/response evidence set or validated vulnerability report. No production testing is claimed.
+The available record confirms Nessus scanning practice but does not contain the original report. This project therefore documents the workflow and learning, not unverified scan findings.
